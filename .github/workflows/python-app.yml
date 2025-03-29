@@ -1,0 +1,25 @@
+name: Keep App Running 24/7  
+
+on:  
+  schedule:  
+    - cron: "*/15 * * * *"  # Runs every 15 minutes  
+  workflow_dispatch:  # Allows manual trigger  
+
+jobs:  
+  keep_alive:  
+    runs-on: ubuntu-latest  
+
+    steps:  
+      - name: Checkout Repository  
+        uses: actions/checkout@v3  
+
+      - name: Set Up Python  
+        uses: actions/setup-python@v3  
+        with:  
+          python-version: '3.9'  
+
+      - name: Install Dependencies  
+        run: pip install flask pytubefix mutagen requests gunicorn  
+
+      - name: Run the Flask App  
+        run: python app.py &  
