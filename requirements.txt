@@ -1,0 +1,6 @@
+flask
+pytubefix
+pyngrok
+requests
+mutagen
+gunicorn
